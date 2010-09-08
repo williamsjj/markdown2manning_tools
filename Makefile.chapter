@@ -1,0 +1,25 @@
+# Build Chapter
+
+CHAPTER_NUMBER=$(shell pwd | gawk  '{ match($$0, "chapter-([0-9]*)", arr); print arr[1]}')
+BOOK_ID=$(shell cat ../BOOK_ID)
+LIVEBOOK_URL=$(shell cat ../LIVEBOOK_URL)
+CHAPTER_NAME=chapter-$(CHAPTER_NUMBER)
+CHAPTER_TITLE="$(shell xpath $(CHAPTER_NAME).xml 'string(/chapter/title)' 2> /dev/null)"
+
+all: docbook pdf
+
+docbook:
+	@echo Making $(CHAPTER_NAME) in Manning DocBook
+	pandoc -r markdown -s -w docbook -o $(CHAPTER_NAME).xml $(CHAPTER_NAME).md
+	xsltproc --novalid -o $(CHAPTER_NAME).xml ../docbook2manning.xslt $(CHAPTER_NAME).xml
+
+pdf:
+	@echo Making $(CHAPTER_NAME) in PDF
+	markdown2pdf -N $(CHAPTER_NAME).md -o $(CHAPTER_NAME).pdf
+
+
+publish: docbook
+	zip $(CHAPTER_NAME).zip $(CHAPTER_NAME).xml *.png *.gif *.jpg *.svg
+	curl -v -F bookId=$(BOOK_ID) -F chapterNumber=$(CHAPTER_NUMBER) -F chapterName=$(CHAPTER_TITLE) \
+	-F chapterType=1 -F partId=-1 -F manuscriptLocation=$(CHAPTER_NAME).xml -F filesToAdd=@$(CHAPTER_NAME).zip \
+	$(LIVEBOOK_URL)
