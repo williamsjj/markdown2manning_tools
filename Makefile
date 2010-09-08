@@ -36,6 +36,6 @@ book: all_chapters
 		pandoc -r markdown -s -w docbook -o $(BOOK_FILE).xml $(TOC).md $(CHAPTER_FILES_MD)
 #		PDF
 		@echo Making $(BOOK_NAME) in PDF
-		markdown2pdf toc.md -o toc.pdf
+		markdown2pdf $(TOC).md -o $(TOC).pdf
 		texexec --purgeall --pdfarrange --result=$(BOOK_FILE) $(TOC).pdf $(CHAPTER_FILES_PDF)
 		rm $(BOOK_FILE).log
