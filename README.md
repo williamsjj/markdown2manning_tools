@@ -6,6 +6,7 @@ These tools will allow you to convert Markdown w/ Pandoc Extensions to PDF and M
 
 Currently they allow you to:
 
+* Create chapter stubs compatible with the tools.
 * Convert single chapters to PDF and/or Manning DocBook.
 * Convert all chapters into individual PDFs and/or Manning DocBook.
 * Build a single PDF representing the whole book containing all chapters.
