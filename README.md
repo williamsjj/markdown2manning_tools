@@ -20,6 +20,7 @@ Currently they allow you to:
 * Pandoc - Converts Markdown and Pandoc extended Markdown to other formats (PDF/Docbook)
 	* [http://johnmacfarlane.net/pandoc/index.html](http://johnmacfarlane.net/pandoc/index.html)
 * xmllib2 - Specifically we need the __xsltproc__, __xpath__ and __xmllint__ programs.
+* curl
 * GNU make
 
 # Creating a new book #
@@ -45,6 +46,10 @@ Currently they allow you to:
 * Chapters must be in directories called "chapter-X" where X is the chapter number.
 * Chapter files themselves must be in their "chapter-X" directory and named "chapter-X.md".
 * Put chapter images inside the chapter directory for the chapter they belong to (.png, .jpg, and .gif are supported)
+* Only use the single # section for chapter title at the beginning of a file (all other sections should use at least ## ):
+
+	# Chapter 1 #
+
 
 # Command Reference #
 
