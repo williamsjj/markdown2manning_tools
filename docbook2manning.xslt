@@ -19,12 +19,15 @@
 
 <!--Convert outer "section" tag to "chapter"-->
 <xsl:template match="/article/section">
-		<chapter>
-			<xsl:attribute name="id">
-				<xsl:value-of select="@id"/>
-			</xsl:attribute>
-			<xsl:apply-templates select="node()"/>
-		</chapter>
+		<book xmlns="http://www.manning.com/schemas/book" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns="http://www.manning.com/schemas/book">
+			<bookinfo><title/><author><firstname /><surname /></author></bookinfo>
+			<chapter>
+				<xsl:attribute name="id">
+					<xsl:value-of select="@id"/>
+				</xsl:attribute>
+				<xsl:apply-templates select="node()"/>
+			</chapter>
+		</book>
 </xsl:template>
 
 <!--Convert "textobject" to "caption"-->

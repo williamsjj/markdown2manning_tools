@@ -4,7 +4,7 @@ CHAPTER_NUMBER=$(shell pwd | gawk  '{ match($$0, "chapter-([0-9]*)", arr); print
 BOOK_ID=$(shell cat ../BOOK_ID)
 LIVEBOOK_URL=$(shell cat ../LIVEBOOK_URL)
 CHAPTER_NAME=chapter-$(CHAPTER_NUMBER)
-CHAPTER_TITLE="$(shell xpath $(CHAPTER_NAME).xml 'string(/chapter/title)' 2> /dev/null)"
+CHAPTER_TITLE="$(shell xpath $(CHAPTER_NAME).xml 'string(/book/chapter/title)' 2> /dev/null)"
 
 all: docbook pdf
 
@@ -12,6 +12,9 @@ docbook:
 	@echo Making $(CHAPTER_NAME) in Manning DocBook
 	pandoc -r markdown -s -w docbook -o $(CHAPTER_NAME).xml $(CHAPTER_NAME).md
 	xsltproc --novalid -o $(CHAPTER_NAME).xml ../docbook2manning.xslt $(CHAPTER_NAME).xml
+	sed -i "" -e 's/xmlns=""//g' $(CHAPTER_NAME).xml
+	@echo Validating Chapter
+	xmllint --noout --schema ../manning-book.xsd $(CHAPTER_NAME).xml
 
 pdf:
 	@echo Making $(CHAPTER_NAME) in PDF

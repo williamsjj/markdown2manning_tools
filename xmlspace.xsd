@@ -1,0 +1,16 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+       elementFormDefault="qualified"
+       targetNamespace="http://www.w3.org/XML/1998/namespace">
+
+  <xs:attribute name="space">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="preserve"/>
+        <xs:enumeration value="default"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+  
+  <xs:attribute name="id" type="xs:ID" />
+
+</xs:schema>
