@@ -48,7 +48,7 @@ Currently they allow you to:
 * Chapters must be in directories called "chapter-X" where X is the chapter number.
 * Chapter files themselves must be in their "chapter-X" directory and named "chapter-X.md".
 * Put chapter images inside the chapter directory for the chapter they belong to (.png, .jpg, and .gif are supported)
-* Only use the single # section for chapter title at the beginning of a file (all other sections should use at least ## g):
+* Only use the single # section for chapter title at the beginning of a file (all other sections should use at least ## ):
 
 	# Chapter 1 #
 
