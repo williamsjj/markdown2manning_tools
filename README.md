@@ -7,7 +7,7 @@ These tools will allow you to convert Markdown w/ Pandoc Extensions to PDF and M
 Currently they allow you to:
 
 * Create chapter stubs compatible with the tools.
-* Convert single chapters to PDF and/or Manning DocBook.
+* Convert single chapters to PDF and/or Manning DocBook (with validation against Manning schema).
 * Convert all chapters into individual PDFs and/or Manning DocBook.
 * Build a single PDF representing the whole book containing all chapters.
 * Publish any chapter directly to Manning's LiveBook site.
@@ -62,7 +62,7 @@ Currently they allow you to:
 * Chapter Commands (run from inside an individual chapter directory)
 	* __make__ or __make all__ - Create PDF and Manning DocBook versions of the chapter.
 	* __make pdf__ - Create PDF version only of the chapter.
-	* __make docbook__ - Create Manning DocBook versions of the chapter.
+	* __make docbook__ - Create Manning DocBook versions of the chapter (validates against Manning schema).
 	* __make publish__ - Re-create the Manning DocBook version of the chapter, ZIP it up with the images in the directory and upload it to Manning LiveBook
 
 
