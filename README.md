@@ -104,5 +104,5 @@ Example:
 
 The Pandoc extensions to Markdown allow you to create tables, insert cross-references, add footnotes, and sanely insert images. You can also insert inline TeX commands if you're so inclined (\\newpage is a very useful TeX command for positioning tables and images). Checkout the Pandoc Markdown syntax reference below:
 
-[Pandoc Markdown Extensions syntax reference](http://johnmacfarlane.net/pandoc/README.html#pandocs-markdown-vs.standard-markdown)
-[Standard Markdown syntax reference](http://daringfireball.net/projects/markdown/syntax)
+* [Pandoc Markdown Extensions syntax reference](http://johnmacfarlane.net/pandoc/README.html#pandocs-markdown-vs.standard-markdown)
+* [Standard Markdown syntax reference](http://daringfireball.net/projects/markdown/syntax)
