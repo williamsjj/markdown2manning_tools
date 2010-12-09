@@ -1,14 +1,14 @@
 # Build RabbitMQ in Action 
-BOOK_NAME=My Cool Book
-BOOK_FILE=my_cool_book
-TOC=toc.md
+BOOK_NAME=RabbitMQ in Action
+BOOK_FILE=rabbitmq_in_action
+TOC=toc
 CHAPTERS=$(shell ls -d chapter-*)
 CHAPTER_FILES_MD := $(foreach chapter, $(CHAPTERS), $(chapter)/$(chapter).md)
 CHAPTER_FILES_PDF := $(foreach chapter, $(CHAPTERS), $(chapter)/$(chapter).pdf)
 NUM:=0
 .PHONY: new_chapter
 
-all: all_chapters book
+all: all_chapters book packzip
 
 new_chapter:
 ifeq ($(NUM), 0)
@@ -24,6 +24,9 @@ else
 		echo -e "# Chapter Title #\n\n## My first cool section ##\n\n" > chapter-$(NUM).md; \
 	fi
 endif
+
+packzip:
+	ditto -ck --rsrc --sequesterRsrc examples rabbitmq_in_action_examples.zip
 
 all_chapters:
 	@for i in $(CHAPTERS); do \

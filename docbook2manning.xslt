@@ -22,12 +22,16 @@
 		<book xmlns="http://www.manning.com/schemas/book" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns="http://www.manning.com/schemas/book">
 			<bookinfo><title/><author><firstname /><surname /></author></bookinfo>
 			<chapter>
-				<xsl:attribute name="id">
-					<xsl:value-of select="@id"/>
-				</xsl:attribute>
 				<xsl:apply-templates select="node()"/>
 			</chapter>
 		</book>
+</xsl:template>
+
+<!-- Copy section, but not its attributes -->
+<xsl:template match="section">
+	<xsl:copy>
+		<xsl:apply-templates select="*|node()"/>
+	</xsl:copy>
 </xsl:template>
 
 <!--Convert "textobject" to "caption"-->
@@ -43,8 +47,19 @@
 <!--Remove "numeration" attribute from "orderedlist" elements-->
 <xsl:template match="@numeration" />
 
+<xsl:template match="@numeration" />
+
+<!--Convert "screen" to "informalexample"-->
+<xsl:template match="screen[not(@*)]">
+	<informalexample>
+		<programlisting>
+			<xsl:apply-templates select="node()"/>
+		</programlisting>
+	</informalexample>
+</xsl:template>
+
 <!--Convert "screen" to "example"-->
-<xsl:template match="screen">
+<xsl:template match="screen[@language]">
 	<example>
 		<programlisting>
 			<xsl:apply-templates select="node()"/>
@@ -61,6 +76,17 @@
 
 <!-- Remove "float" attribute -->
 <xsl:template match="@float" />
+
+<!--Convert "informaltable" to "table"-->
+<xsl:template match="informaltable">
+	<table>
+		<title></title>
+		<xsl:apply-templates select="node()"/>
+	</table>
+</xsl:template>
+
+<!-- Remove "table/col" elements -->
+<xsl:template match="informaltable/col" />
 
 <!--Convert "table/caption" to "table/title"-->
 <xsl:template match="table/caption">
