@@ -59,7 +59,7 @@ __IMPORTANT:__ We now use Manning's Agile Author PDF maker (you get Manning read
 * Put chapter images inside the chapter directory for the chapter they belong to (.png, .jpg, and .gif are supported)
 * Only use the single # section for chapter title at the beginning of a file (all other sections should use at least ## ):
 
-	# Chapter 1 #
+ # Chapter 1 #
 
 # Extended Markdown Syntax #
 
@@ -67,20 +67,20 @@ By default, we support the Pandoc extensions to markdown. There are also a few o
 
 * __Code Listings__: Using the syntax below will create a titled code listing (make sure there are at least 3 tildas). Note that you don't have to put the listing number in the title, it will be automatically created for you when the XML and PDF are generated. The normal markdown syntax for [code blocks](http://daringfireball.net/projects/markdown/syntax#precode) will create a code snippet instead.
 
-	~~~~~~~~~{title="My cool code example"}
-	import foo
-	
-	foo.super\_print("Ain't this rockin'?")
-	~~~~~~~~~
+ ~~~~~~~~~{title="My cool code example"}
+ import foo
+ 
+ foo.super\_print("Ain't this rockin'?")
+ ~~~~~~~~~
 
 * __Callouts__: Inside of a code listing, you can use special comment syntax to create a "callout". This will convert the comment when formatted into a number placed next to the section with your comment text as the explanation. It will also allow you to reference the callout number in your explanatory paragraphs below the code listing. The syntax is <code>#/(calloutID) Comment text.</code> __calloutID__ can be any string without spaces you want and must be unique across all of your callouts.
 
-	~~~~~~~~~{title="Anti-Gravity Machine"}
-	import grav\_neutralizer
-	
-	g = grav\_neutralizer() #/(agm.1) Initialize the neutralizer.
-	g.activate() #/(agm.2) Start repelling gravity.
-	~~~~~~~~~
+ ~~~~~~~~~{title="Anti-Gravity Machine"}
+ import grav\_neutralizer
+ 
+ g = grav\_neutralizer() #/(agm.1) Initialize the neutralizer.
+ g.activate() #/(agm.2) Start repelling gravity.
+ ~~~~~~~~~
 
 # Command Reference #
 
