@@ -1,6 +1,6 @@
-# Markdown 2 Manning Tools #
+# Markdown 2 Manning #
 
-(C) Jason Williams, All Rights Reserved. Distributed under the BSD license.
+(C) [mailto:jasonjwilliams@gmail.com](Jason Williams) & [mailto:videlalvaro@gmail.com](Alvaro Videla), All Rights Reserved. Distributed under the BSD license.
 
 These tools will allow you to convert Markdown w/ Pandoc Extensions to PDF and Manning Publishing's version of DocBook.
 
@@ -14,11 +14,20 @@ Currently they allow you to:
 
 # Required Software #
 
+__IMPORTANT:__ We now use Manning's Agile Author PDF maker (you get Manning ready PDFs as a result)! Please read how to install below.
+
+* Agile Author PDF Maker: We can't distribute this. But you can get it from Manning (or email us and we'll help) if you're an author.
+	* To install: Unpack the AA PDF maker archive into __AAMakePDFv17/__ in the root directory of this repo.
 * TexLive or MacTex (I use MacTex) - Required for PDF generation
 	* TexLive: [http://tug.org/texlive/](http://tug.org/texlive/)
 	* MacTex: [http://www.tug.org/mactex/](http://www.tug.org/mactex/)
+* Haskell
+	* For most platforms this is the easy way: [http://hackage.haskell.org/platform/](http://hackage.haskell.org/platform/)
 * Pandoc - Converts Markdown and Pandoc extended Markdown to other formats (PDF/Docbook)
-	* [http://johnmacfarlane.net/pandoc/index.html](http://johnmacfarlane.net/pandoc/index.html)
+	* Once you've got Haskell installed, run:
+		* cabal update
+		* cabal install pandoc
+	* [http://johnmacfarlane.net/pandoc/index.html](http://johnmacfarlane.net/pandoc/index.html)	
 * xmllib2 - Specifically we need the __xsltproc__, __xpath__ and __xmllint__ programs.
 * curl
 * GNU make
@@ -52,6 +61,26 @@ Currently they allow you to:
 
 	# Chapter 1 #
 
+# Extended Markdown Syntax #
+
+By default, we support the Pandoc extensions to markdown. There are also a few other extensions to markdown we've added specific to authoring Manning books:
+
+* __Code Listings__: Using the syntax below will create a titled code listing (make sure there are at least 3 tildas). Note that you don't have to put the listing number in the title, it will be automatically created for you when the XML and PDF are generated. The normal markdown syntax for [http://daringfireball.net/projects/markdown/syntax#precode](code blocks) will create a code snippet instead.
+
+	~~~~~~~~~{title="My cool code example"}
+	import foo
+	
+	foo.super\_print("Ain't this rockin'?")
+	~~~~~~~~~
+
+* __Callouts__: Inside of a code listing, you can use special comment syntax to create a "callout". This will convert the comment when formatted into a number placed next to the section with your comment text as the explanation. It will also allow you to reference the callout number in your explanatory paragraphs below the code listing. The syntax is <code>#/(calloutID) Comment text.</code> __calloutID__ can be any string without spaces you want and must be unique across all of your callouts.
+
+	~~~~~~~~~{title="Anti-Gravity Machine"}
+	import grav\_neutralizer
+	
+	g = grav\_neutralizer() #/(agm.1) Initialize the neutralizer.
+	g.activate() #/(agm.2) Start repelling gravity.
+	~~~~~~~~~
 
 # Command Reference #
 
