@@ -1,6 +1,6 @@
 # Markdown 2 Manning #
 
-(C) [mailto:jasonjwilliams@gmail.com](Jason Williams) & [mailto:videlalvaro@gmail.com](Alvaro Videla), All Rights Reserved. Distributed under the BSD license.
+(C) [Jason Williams](mailto:jasonjwilliams@gmail.com) & [Alvaro Videla](mailto:videlalvaro@gmail.com), All Rights Reserved. Distributed under the BSD license.
 
 These tools will allow you to convert Markdown w/ Pandoc Extensions to PDF and Manning Publishing's version of DocBook.
 
@@ -65,7 +65,7 @@ __IMPORTANT:__ We now use Manning's Agile Author PDF maker (you get Manning read
 
 By default, we support the Pandoc extensions to markdown. There are also a few other extensions to markdown we've added specific to authoring Manning books:
 
-* __Code Listings__: Using the syntax below will create a titled code listing (make sure there are at least 3 tildas). Note that you don't have to put the listing number in the title, it will be automatically created for you when the XML and PDF are generated. The normal markdown syntax for [http://daringfireball.net/projects/markdown/syntax#precode](code blocks) will create a code snippet instead.
+* __Code Listings__: Using the syntax below will create a titled code listing (make sure there are at least 3 tildas). Note that you don't have to put the listing number in the title, it will be automatically created for you when the XML and PDF are generated. The normal markdown syntax for [code blocks](http://daringfireball.net/projects/markdown/syntax#precode) will create a code snippet instead.
 
 	~~~~~~~~~{title="My cool code example"}
 	import foo
