@@ -1,6 +1,6 @@
 # Build RabbitMQ in Action 
-BOOK_NAME=RabbitMQ in Action
-BOOK_FILE=rabbitmq_in_action
+BOOK_NAME=My Cool Book
+BOOK_FILE=my_cool_book
 TOC=toc
 CHAPTERS=$(shell ls -d chapter-*)
 CHAPTER_FILES_MD := $(foreach chapter, $(CHAPTERS), $(chapter)/$(chapter).md)
