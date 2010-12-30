@@ -18,7 +18,8 @@ docbook:
 
 pdf:
 	@echo Making $(CHAPTER_NAME) in PDF
-	../AAMakePDFv17/to_pdf.sh $(CHAPTER_NAME).xml $(CHAPTER_NAME).pdf
+	../AAMakePDFv17/AAMakePDF.sh $(CHAPTER_NAME).xml $(CHAPTER_NAME).pdf ../AAMakePDFv17/
+	@rm -f $(CHAPTER_NAME).xml.temp.xml
 
 
 publish: docbook
