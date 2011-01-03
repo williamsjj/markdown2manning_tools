@@ -20,9 +20,9 @@ docbook:
 pdf:
 	@echo Making $(CHAPTER_NAME) in PDF
 ifeq ($(OS), Darwin)
-	../AAMakePDF/AAMakePDFMac.sh $(CHAPTER_NAME).xml $(CHAPTER_NAME).pdf ../AAMakePDFv17/
+	../AAMakePDF/AAMakePDFMac.sh $(CHAPTER_NAME).xml $(CHAPTER_NAME).pdf ../AAMakePDF/
 else
-	../AAMakePDF/AAMakePDF.sh $(CHAPTER_NAME).xml $(CHAPTER_NAME).pdf ../AAMakePDFv17/
+	../AAMakePDF/AAMakePDF.sh $(CHAPTER_NAME).xml $(CHAPTER_NAME).pdf ../AAMakePDF/
 endif
 	@rm -f $(CHAPTER_NAME).xml.temp.xml
 
