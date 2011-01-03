@@ -5,6 +5,7 @@ BOOK_ID=$(shell cat ../BOOK_ID)
 LIVEBOOK_URL=$(shell cat ../LIVEBOOK_URL)
 CHAPTER_NAME=chapter-$(CHAPTER_NUMBER)
 CHAPTER_TITLE="$(shell xpath $(CHAPTER_NAME).xml 'string(/book/chapter/title)' 2> /dev/null)"
+OS=$(shell uname)
 
 all: docbook pdf
 
@@ -18,7 +19,11 @@ docbook:
 
 pdf:
 	@echo Making $(CHAPTER_NAME) in PDF
-	../AAMakePDFv17/AAMakePDF.sh $(CHAPTER_NAME).xml $(CHAPTER_NAME).pdf ../AAMakePDFv17/
+ifeq ($(OS), Darwin)
+	../AAMakePDF/AAMakePDFMac.sh $(CHAPTER_NAME).xml $(CHAPTER_NAME).pdf ../AAMakePDFv17/
+else
+	../AAMakePDF/AAMakePDF.sh $(CHAPTER_NAME).xml $(CHAPTER_NAME).pdf ../AAMakePDFv17/
+endif
 	@rm -f $(CHAPTER_NAME).xml.temp.xml
 
 
