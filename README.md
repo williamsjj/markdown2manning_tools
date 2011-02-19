@@ -23,10 +23,11 @@ __IMPORTANT:__ We now use Manning's Agile Author PDF maker (you get Manning read
 	* MacTex: [http://www.tug.org/mactex/](http://www.tug.org/mactex/)
 * Haskell
 	* For most platforms this is the easy way: [http://hackage.haskell.org/platform/](http://hackage.haskell.org/platform/)
-* Pandoc - Converts Markdown and Pandoc extended Markdown to other formats (PDF/Docbook)
+* Pandoc 1.6 - Converts Markdown and Pandoc extended Markdown to other formats (PDF/Docbook)
 	* Once you've got Haskell installed, run:
 		* cabal update
-		* cabal install pandoc
+		* cabal install pandoc-1.6.0.1
+		* NB: Only install pandoc 1.6.0.1. Anything newer will not currently work.
 	* [http://johnmacfarlane.net/pandoc/index.html](http://johnmacfarlane.net/pandoc/index.html)	
 * xmllib2 - Specifically we need the __xsltproc__, __xpath__ and __xmllint__ programs.
 * curl
