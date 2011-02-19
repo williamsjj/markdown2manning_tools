@@ -21,7 +21,7 @@ else
 		mkdir chapter-$(NUM); \
 		cd chapter-$(NUM); \
 		ln -s ../Makefile.chapter Makefile; \
-		echo -e "# Chapter Title #\n\n## My first cool section ##\n\n" > chapter-$(NUM).md; \
+		echo "# Chapter Title #\n\n## My first cool section ##\n\n" > chapter-$(NUM).md; \
 	fi
 endif
 
