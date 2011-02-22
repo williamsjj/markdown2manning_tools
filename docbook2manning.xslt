@@ -39,6 +39,11 @@
 	<caption><xsl:apply-templates select="node()"/></caption>
 </xsl:template>
 
+<!--Convert "literal" to "code"-->
+<xsl:template match="literal">
+	<code><xsl:apply-templates select="node()"/></code>
+</xsl:template>
+
 <!--Convert "phrase" to "para"-->
 <xsl:template match="phrase">
 	<para><xsl:apply-templates select="node()"/></para>
