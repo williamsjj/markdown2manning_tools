@@ -29,6 +29,6 @@ endif
 
 publish: docbook
 	zip $(CHAPTER_NAME).zip $(CHAPTER_NAME).xml *.png *.gif *.jpg *.svg
-	curl -v -F bookId=$(BOOK_ID) -F chapterNumber=$(CHAPTER_NUMBER) -F chapterName=$(CHAPTER_TITLE) \
-	-F chapterType=1 -F partId=-1 -F manuscriptLocation=$(CHAPTER_NAME).xml -F filesToAdd=@$(CHAPTER_NAME).zip \
-	$(LIVEBOOK_URL)
+	# curl -v -F bookId=$(BOOK_ID) -F chapterNumber=$(CHAPTER_NUMBER) -F chapterName=$(CHAPTER_TITLE) \
+	# 	-F chapterType=1 -F partId=-1 -F manuscriptLocation=$(CHAPTER_NAME).xml -F filesToAdd=@$(CHAPTER_NAME).zip \
+	# 	$(LIVEBOOK_URL)
