@@ -188,12 +188,12 @@ blockToManning :: Block -> IO Block
 blockToManning (CodeBlock (_,_,namevals) str) = 
       case lookup "title" namevals of
           Just title ->
-            return (RawHtml (render (inTags True "example" [] $
+            return (RawBlock "html" (render (inTags True "example" [] $
               inTagsSimple "title" (text (escapeStringForXML title)) $$
               programListing str $$
               callouts str)))
           Nothing ->
-            return (RawHtml (render (inTags True "informalexample" [] $
+            return (RawBlock "html" (render (inTags True "informalexample" [] $
               programListing str $$
               callouts str)))
 blockToManning x =  return x

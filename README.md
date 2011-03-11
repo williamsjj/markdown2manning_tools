@@ -26,8 +26,8 @@ __IMPORTANT:__ We now use Manning's Agile Author PDF maker (you get Manning read
 * Pandoc 1.6 - Converts Markdown and Pandoc extended Markdown to other formats (PDF/Docbook)
 	* Once you've got Haskell installed, run:
 		* cabal update
-		* cabal install pandoc-1.6.0.1
-		* NB: Only install pandoc 1.6.0.1. Anything newer will not currently work.
+		* cabal install pandoc
+		* NB: pandoc will throw some warnings regarding deprecated functions that we plan to fix later
 	* [http://johnmacfarlane.net/pandoc/index.html](http://johnmacfarlane.net/pandoc/index.html)	
 * xmllib2 - Specifically we need the __xsltproc__, __xpath__ and __xmllint__ programs.
 * curl
