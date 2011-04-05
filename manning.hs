@@ -95,7 +95,7 @@ inTags isIndented tagType attribs contents =
                 char '>'
       closeTag  = text "</" <> text tagType <> char '>'
   in  if isIndented
-         then openTag $$ nest 2 contents $$ closeTag
+         then openTag $$ nest 0 contents $$ closeTag
          else openTag <> contents <> closeTag
 
 -- | Return a self-closing tag of tagType with specified attributes
@@ -161,7 +161,7 @@ addCoToLines codeLines =
 
 programListing :: String -> Doc
 programListing str = 
-    inTags False "programlisting" [("xml:space", "preserve")] (text str')
+    inTags True "programlisting" [("xml:space", "preserve")] (text str')
   where 
     str' = unlines $ addCoToLines $ lines str
 
