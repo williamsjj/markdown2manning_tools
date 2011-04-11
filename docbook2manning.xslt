@@ -22,6 +22,7 @@
 		<book xmlns="http://www.manning.com/schemas/book" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns="http://www.manning.com/schemas/book">
 			<bookinfo><title/><author><firstname /><surname /></author></bookinfo>
 			<chapter>
+				<xsl:attribute name="label"><xsl:value-of select="$chapternum"/></xsl:attribute>
 				<xsl:apply-templates select="node()"/>
 			</chapter>
 		</book>

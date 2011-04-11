@@ -12,7 +12,7 @@ all: docbook pdf
 docbook:
 	@echo Making $(CHAPTER_NAME) in Manning DocBook
 	runghc ../manning.hs < $(CHAPTER_NAME).md > $(CHAPTER_NAME).xml
-	xsltproc --novalid -o $(CHAPTER_NAME).xml ../docbook2manning.xslt $(CHAPTER_NAME).xml
+	xsltproc --novalid --stringparam chapternum $(CHAPTER_NUMBER) -o $(CHAPTER_NAME).xml ../docbook2manning.xslt $(CHAPTER_NAME).xml
 	sed -i "" -e 's/xmlns=""//g' $(CHAPTER_NAME).xml
 	@echo Validating Chapter
 	xmllint --noout --schema ../manning-book.xsd $(CHAPTER_NAME).xml
