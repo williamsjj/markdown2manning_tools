@@ -46,10 +46,10 @@ hPutStrLn h s = hPutStr h (s ++ "\n")
 -- End: Text.Pandoc.UTF8
 --
 
--- 
+--
 -- Start: Text.Pandoc.XML
 -- Copyright John Mac Farlane
--- 
+--
 
 stripTags :: String -> String
 stripTags ('<':xs) =
@@ -110,9 +110,9 @@ inTagsSimple tagType = inTags False tagType []
 -- | Put the supplied contents in indented block btw start and end tags.
 inTagsIndented :: String -> Doc -> Doc
 inTagsIndented tagType = inTags True tagType []
--- 
+--
 
--- 
+--
 -- End: Text.Pandoc.XML
 --
 
@@ -122,13 +122,13 @@ inTagsIndented tagType = inTags True tagType []
 --
 -- (Code, Callout, Id)
 getCalloutId :: String -> (String, String)
-getCalloutId co = 
+getCalloutId co =
     helper co []
   where
     helper :: String -> String -> (String, String)
     helper ('(':rest) acc = helper rest acc
-    helper (x:rest) acc = 
-        if(x /= ')') 
+    helper (x:rest) acc =
+        if(x /= ')')
           then
             helper rest (acc ++ [x])
           else
@@ -142,7 +142,7 @@ splitAtCallout codeLine =
     helper :: String -> String -> (String, (String, String))
     helper []         codeStrAcc = (codeStrAcc, ([], []))
     helper [x]        codeStrAcc = (codeStrAcc ++ [x], ([], []))
-    helper (x:y:rest) codeStrAcc = 
+    helper (x:y:rest) codeStrAcc =
         if (x == '#') && (y == '/')
           then
             (codeStrAcc, (getCalloutId rest))
@@ -152,27 +152,27 @@ splitAtCallout codeLine =
 convertCodeLine :: (String, (String, String)) -> String
 convertCodeLine (code, ([], _))      =
   (escapeStringForXML code)
-convertCodeLine (code, (_callout, calloutId)) = 
+convertCodeLine (code, (_callout, calloutId)) =
   (escapeStringForXML code) ++ "<co id='" ++ calloutId ++ "'/>"
 
 addCoToLines :: [String] -> [String]
-addCoToLines codeLines = 
+addCoToLines codeLines =
   map convertCodeLine (map splitAtCallout codeLines)
 
 programListing :: String -> Doc
-programListing str = 
+programListing str =
     inTags True "programlisting" [("xml:space", "preserve")] (text str')
-  where 
+  where
     str' = unlines $ addCoToLines $ lines str
 
 generateCallouts :: [String] -> [Doc]
-generateCallouts codeLines = 
+generateCallouts codeLines =
     helper (map splitAtCallout codeLines) []
   where
     helper [] result = result
-    helper ((_, ([], _)):rest) result = 
+    helper ((_, ([], _)):rest) result =
         helper rest result
-    helper ((_, (callout, calloutId)):rest) result = 
+    helper ((_, (callout, calloutId)):rest) result =
         helper rest (result ++ [inTags True "callout" [("arearefs", calloutId)] $
                                   inTagsSimple "para" (text (escapeStringForXML callout))])
 
@@ -185,7 +185,7 @@ callouts str =
           inTags True "calloutlist" [] (vcat co)
 
 blockToManning :: Block -> IO Block
-blockToManning (CodeBlock (_,_,namevals) str) = 
+blockToManning (CodeBlock (_,_,namevals) str) =
       case lookup "title" namevals of
           Just title ->
             return (RawBlock "html" (render (inTags True "example" [] $
@@ -207,6 +207,6 @@ writeDoc template pandocText = writeDocbook defaultWriterOptions {writerStandalo
 main :: IO ()
 main = do
   origText <- getContents
-  docbookText <- processWithM blockToManning $ readDoc origText
+  docbookText <- bottomUpM blockToManning $ readDoc origText
   template <- readFile "../manning.template"
   putStrLn $ writeDoc template docbookText
