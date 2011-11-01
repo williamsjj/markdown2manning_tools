@@ -18,6 +18,8 @@ __IMPORTANT:__ We now use Manning's Agile Author PDF maker (you get Manning read
 
 * Agile Author PDF Maker: We can't distribute this. But you can get it from Manning (or email us and we'll help) if you're an author.
 	* To install: Unpack the AA PDF maker archive into __AAMakePDF/__ in the root directory of this repo.
+* Agile Author Validator: We can't distribute this either. But you can get it from Manning (or email us and we'll help) if you're an author.
+	* To install: Unpack the AA validator archive into __validator/__ in the root directory of this repo.
 * TexLive or MacTex (I use MacTex) - Required for PDF generation
 	* TexLive: [http://tug.org/texlive/](http://tug.org/texlive/)
 	* MacTex: [http://www.tug.org/mactex/](http://www.tug.org/mactex/)

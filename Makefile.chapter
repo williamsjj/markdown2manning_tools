@@ -16,6 +16,9 @@ docbook:
 	sed -i "" -e 's/xmlns=""//g' $(CHAPTER_NAME).xml
 	@echo Validating Chapter
 	xmllint --noout --schema ../manning-book.xsd $(CHAPTER_NAME).xml
+	bash -c "cd ../validator/; java -cp .:AAValidator.jar:svnkit.jar:servlet.jar:maven-embedder-2.0.4-dep.jar:maven-2.0.9-uber.jar AAValidator ../$(CHAPTER_NAME)/$(CHAPTER_NAME).xml"
+	rm temp.xml
+	rm ../validator/c:\\sw\\text.txt
 
 pdf:
 	@echo Making $(CHAPTER_NAME) in PDF
