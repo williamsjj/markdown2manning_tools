@@ -1,4 +1,5 @@
 -- manning.hs
+import Data.List (isSuffixOf)
 import Text.Pandoc
 import Text.PrettyPrint.HughesPJ hiding ( Str )
 
@@ -134,6 +135,15 @@ getCalloutId co =
           else
             (rest, acc)
 
+-- Handles Erlang, Java and C# comments characters
+removeCommentsMarks :: String -> String
+removeCommentsMarks codeLine
+  | isSuffixOf "%%" codeLine = dropSuffix codeLine
+  | isSuffixOf "//" codeLine = dropSuffix codeLine
+  | otherwise                = codeLine
+  where
+    dropSuffix xs = take ((length xs) -2) xs
+
 -- (Code, Callout, CalloutId)
 splitAtCallout :: String -> (String, (String, String))
 splitAtCallout codeLine =
@@ -145,7 +155,7 @@ splitAtCallout codeLine =
     helper (x:y:rest) codeStrAcc =
         if (x == '#') && (y == '/')
           then
-            (codeStrAcc, (getCalloutId rest))
+            ((removeCommentsMarks codeStrAcc), (getCalloutId rest))
           else
             helper (y:rest) (codeStrAcc ++ [x])
 
